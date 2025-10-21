@@ -7,14 +7,17 @@ const PORT = process.env.PORT || 3000;
 // html 진입
 app.use(express.static('public'));
 
-// 확장자(.html) 제거
-app.get('/:page', (req, res, next) => {
+// 확장자(.html) 없이도 접근
+// .html 확장자 제거 리다이렉트
+app.get('/:page.html', (req, res) => {
   const page = req.params.page;
-  const filePath = `${__dirname}/public/${page}.html`;
-  res.sendFile(filePath, (err) => {
-    if (err) next();
-  });
+  if (page === 'index') {
+    res.redirect('/');
+  } else {
+    res.redirect(`/${page}`);
+  }
 });
+
 
 // 루트 페이지
 app.get('/', (req, res) => {
