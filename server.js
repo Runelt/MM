@@ -4,10 +4,8 @@ const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// 라우트
-app.get('/', (req, res) => {
-  res.send('✅ Working');
-});
+// html 진입
+app.use(express.static('public'));
 
 // 서버 구동
 app.listen(PORT, () => {
