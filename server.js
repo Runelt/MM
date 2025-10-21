@@ -14,6 +14,9 @@ app.get('/:page.html', (req, res, next) => {
   if (page === 'index') return res.redirect(301, '/');
   return res.redirect(301, `/${page}`);
 });
+app.get('/index', (req, res) => {
+  res.redirect(301, '/');
+});
 // 파일 찾기
 app.use(
   express.static(PUBLIC_DIR, {
